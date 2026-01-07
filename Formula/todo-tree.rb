@@ -4,30 +4,30 @@
 class TodoTree < Formula
   desc "A CLI tool to find and display TODO-style comments in your codebase"
   homepage "https://github.com/alexandretrotel/todo-tree"
-  version "0.2.1"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/alexandretrotel/todo-tree/releases/download/todo-tree-v#{version}/todo-tree-aarch64-apple-darwin.tar.gz"
-      sha256 "2cd1756058d2f96c99d10f6444ea0227662dfaeb0ace0990ba296c3412504ae8"
+      sha256 "f56d9d5c9c8f6890bdca643637f46a8244ea50e4472c95ebff3af7ed26b0e548"
     end
 
     on_intel do
       url "https://github.com/alexandretrotel/todo-tree/releases/download/todo-tree-v#{version}/todo-tree-x86_64-apple-darwin.tar.gz"
-      sha256 "29b0fcbe5d19af0a85e5f0cc67c4b5ce28be6c99aabf09f95ba81456a15d9c81"
+      sha256 "ebd28f25029ad1549841a9db1b54e623ec8c70fb7fb5b8475fdff326cc860a02"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/alexandretrotel/todo-tree/releases/download/todo-tree-v#{version}/todo-tree-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "b4686ce41a3e84ae0427e011ccdf516c50c5e29c333122dc5281df2eb897b5d8"
+      sha256 "f464c3e72ecbe216af15b2576dfe3996c8e3daa81eec61b2730c050582cc783f"
     end
 
     on_intel do
       url "https://github.com/alexandretrotel/todo-tree/releases/download/todo-tree-v#{version}/todo-tree-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "7da2534a42c5cc0cae667193872f8a99f2262a698ed455b3e3087073a143c5d3"
+      sha256 "854d3b651e80ff6746c770c84065ca6e84826a6fddd87bab4e9ae32cd7695a86"
     end
   end
 
