@@ -1,11 +1,11 @@
 # Homebrew Tap for todo-tree
 
-This is the official Homebrew tap for [todo-tree](https://github.com/atrtde/todo-tree), a CLI tool to find and display TODO-style comments in your codebase.
+This is the official Homebrew tap for [todo-tree](https://github.com/alexandretrotel/todo-tree), a CLI tool to find and display TODO-style comments in your codebase.
 
 ## Installation
 
 ```bash
-brew tap atrtde/todo-tree
+brew tap alexandretrotel/todo-tree
 brew install todo-tree
 ```
 
@@ -29,5 +29,5 @@ brew upgrade todo-tree
 
 ```bash
 brew uninstall todo-tree
-brew untap atrtde/todo-tree
+brew untap alexandretrotel/todo-tree
 ```
