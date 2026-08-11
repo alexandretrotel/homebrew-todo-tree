@@ -6,35 +6,31 @@ on:
       - main
   pull_request:
 
+defaults:
+  run:
+    shell: bash -xeuo pipefail {0}
+
 jobs:
-  test:
-    name: brew install (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+  test-bot:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, macos-13, ubuntu-latest]
-
+        os: [macos-latest, macos-13]
+        include:
+          - os: ubuntu-latest
+            container:
+              image: ghcr.io/homebrew/brew:latest
+    runs-on: ${{ matrix.os }}
+    container: ${{ fromJSON(toJSON(matrix.container)) }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
       - name: Set up Homebrew
-        if: runner.os == 'Linux'
+        id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
-      - name: Tap and install
-        run: |
-          brew tap alexandretrotel/todo-tree "$PWD"
-          brew install --verbose alexandretrotel/todo-tree/todo-tree
+      - run: brew test-bot --only-cleanup-before
 
-      - name: Run brew test
-        run: brew test alexandretrotel/todo-tree/todo-tree
+      - run: brew test-bot --only-setup
 
-      - name: Run brew audit
-        run: brew audit --strict --online alexandretrotel/todo-tree/todo-tree
+      - run: brew test-bot --only-tap-syntax
 
-      - name: Check binaries work
-        run: |
-          todo-tree --version
-          tt --version
+      - run: brew test-bot --only-formulae
