@@ -19,14 +19,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
+      - name: Set up Homebrew
+        if: runner.os == 'Linux'
+        uses: Homebrew/actions/setup-homebrew@master
+
       - name: Tap and install
-        run: brew install --verbose --formula ./Formula/todo-tree.rb
+        run: |
+          brew tap alexandretrotel/todo-tree "$PWD"
+          brew install --verbose alexandretrotel/todo-tree/todo-tree
 
       - name: Run brew test
-        run: brew test todo-tree
+        run: brew test alexandretrotel/todo-tree/todo-tree
 
       - name: Run brew audit
-        run: brew audit --strict --online todo-tree
+        run: brew audit --strict --online alexandretrotel/todo-tree/todo-tree
 
       - name: Check binaries work
         run: |
