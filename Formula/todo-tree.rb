@@ -1,11 +1,13 @@
-# typed: false
-# frozen_string_literal: true
-
 class TodoTree < Formula
-  desc "A CLI tool to find and display TODO-style comments in your codebase"
+  desc "A command-line tool to find and display TODO-style comments in your codebase"
   homepage "https://github.com/alexandretrotel/todo-tree"
-  version "0.6.2"
+  version "1.0.0"
   license "GPL-3.0-or-later"
+
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
 
   on_macos do
     on_arm do

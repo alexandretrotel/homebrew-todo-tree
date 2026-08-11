@@ -1,0 +1,34 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    name: brew install (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, macos-13, ubuntu-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Tap and install
+        run: brew install --verbose --formula ./Formula/todo-tree.rb
+
+      - name: Run brew test
+        run: brew test todo-tree
+
+      - name: Run brew audit
+        run: brew audit --strict --online todo-tree
+
+      - name: Check binaries work
+        run: |
+          todo-tree --version
+          tt --version
